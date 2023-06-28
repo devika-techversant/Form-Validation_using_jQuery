@@ -23,7 +23,7 @@ $(document).ready(function() {
         return regEx.test(name);
     }
 
-    function isValidEmail(emailID) {
+    function isValidEmailID(emailID) {
         const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return regEx.test(String(emailID).toLowerCase());
     }
@@ -80,6 +80,13 @@ $(document).ready(function() {
             setError("#password", "Password must be at least 8 characters.");
         } else {
             setSuccess("#password");
+        }
+
+        // Form submission if there are no errors
+        if ($(".errorMessage").text() === "") {
+            // Uncomment the line below to submit the form
+            // $("#formToValidate").submit();
+            alert("Form submitted successfully!");
         }
     }
 });
