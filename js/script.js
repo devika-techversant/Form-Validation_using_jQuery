@@ -1,86 +1,89 @@
 $(document).ready(function() {
     $("#formToValidate").submit(function(event) {
         event.preventDefault();
-        validateInputs();
-    });
 
-    function setError(element, message) {
-        const inputControl = $(element).parent();
-        const errorDisplay = inputControl.find(".errorMessage");
-        errorDisplay.html(message);
-        inputControl.addClass("errorStyle").removeClass("successStyle");
-    }
-
-    function setSuccess(element) {
-        const inputControl = $(element).parent();
-        const errorDisplay = inputControl.find(".errorMessage");
-        errorDisplay.html("");
-        inputControl.addClass("successStyle").removeClass("errorStyle");
-    }
-
-    function isValidName(name) {
-        const regEx = /^[a-zA-Z\-]+$/;
-        return regEx.test(name);
-    }
-
-    function isValidEmailID(emailID) {
-        const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return regEx.test(String(emailID).toLowerCase());
-    }
-
-    function isValidNumber(phoneNumber) {
-        const regEx = /^\d{10}$/;
-        return regEx.test(phoneNumber);
-    }
-
-    function validateInputs() {
-        const firstNameValue = $("#firstName").val().trim();
-        const lastNameValue = $("#lastName").val().trim();
-        const emailIDValue = $("#emailID").val().trim();
-        const phoneNumberValue = $("#phoneNumber").val().trim();
-        const passwordValue = $("#password").val().trim();
-
-        //Performing validation for inputs
-
-        if (firstNameValue === "") {
-            setError("#firstName", "First Name is required");
-        } else if (!isValidName(firstNameValue)) {
-            setError("#firstName", "Please provide a valid first name");
-        } else {
-            setSuccess("#firstName");
-        }
-        
-        if (lastNameValue === "") {
-            setError("#lastName", "Last Name is required");
-        } else if (!isValidName(lastNameValue)) {
-            setError("#lastName", "Please provide a valid last name");
-        } else {
-            setSuccess("#lastName");
+        // Email ID validation function
+        function isValidEmail(email) {
+            // Regular expression for email validation
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
         }
 
-        if (emailIDValue === "") {
-            setError("#emailID", "Email is required");
-        } else if (!isValidEmailID(emailIDValue)) {
-            setError("#emailID", "Please provide a valid email address");
-        } else {
-            setSuccess("#emailID");
+        // Phone number validation function
+        function isValidPhoneNumber(phoneNumber) {
+            // Regular expression for phone number validation
+            let phoneNumberPattern = /^\d{10}$/;
+            return phoneNumberPattern.test(phoneNumber);
         }
 
-        if (phoneNumberValue === "") {
-            setError("#phoneNumber", "Phone Number is required");
-        } else if (!isValidNumber(phoneNumberValue)) {
-            setError("#phoneNumber", "Please provide a valid phone number");
-        } else {
-            setSuccess("#phoneNumber");
+        // Reset error messages
+        $(".errorMessage").empty();
+
+        // Fetch form inputs
+        let firstName = $("#firstName").val().trim();
+        let lastName = $("#lastName").val().trim();
+        let emailID = $("#emailID").val().trim();
+        let phoneNumber = $("#phoneNumber").val().trim();
+        let password = $("#password").val().trim();
+        let gender = $("input[name='gender']:checked").val();
+        let agreeMessage = $("input[name='agreeMessage']:checked").length > 0;
+        let termsAgreement = $("input[name='termsAgreement']:checked").length > 0;
+        // let stateInIndia = $("#stateInIndia").val();
+        let feedback = $("#feedback").val().trim();
+
+        // Validate First Name
+        if (firstName === "") {
+            $("#firstName").siblings(".errorMessage").text("First name is required.");
         }
 
-        if (passwordValue === "") {
-            setError("#password", "Password is required");
-        } else if (passwordValue.length < 8) {
-            setError("#password", "Password must be at least 8 characters.");
-        } else {
-            setSuccess("#password");
+        // Validate Last Name
+        if (lastName === "") {
+            $("#lastName").siblings(".errorMessage").text("Last name is required.");
         }
+
+        // Validate Email ID
+        if (emailID === "") {
+            $("#emailID").siblings(".errorMessage").text("Email ID is required.");
+        } else if (!isValidEmail(emailID)) {
+            $("#emailID").siblings(".errorMessage").text("Invalid email ID.");
+        }
+
+        // Validate Phone Number
+        if (phoneNumber === "") {
+            $("#phoneNumber").siblings(".errorMessage").text("Phone number is required.");
+        } else if (!isValidPhoneNumber(phoneNumber)) {
+            $("#phoneNumber").siblings(".errorMessage").text("Invalid phone number.");
+        }
+
+        // Validate Password
+        if (password === "") {
+            $("#password").siblings(".errorMessage").text("Password is required.");
+        }
+
+        // Validate Gender
+        if (!gender) {
+            $(".radioButtonClass .errorMessage").text("Please select a gender.");
+        }
+
+        // Validate Agree Message
+        if (!agreeMessage) {
+            $(".checkboxClass .errorMessage").text("Please agree to be contacted.");
+        }
+
+        // Validate Terms Agreement Message
+        if (!termsAgreement) {
+            $(".checkboxClassTwo .errorMessage").text("Please agree to be contacted.");
+        }
+
+        // Validate State
+        if (stateInIndia === "") {
+            $("#stateInIndia").siblings(".errorMessage").text("Please select a country.");
+        }
+
+        // // Validate Feedback
+        // if (feedback === "") {
+        //     $("#feedback").siblings(".errorMessage").text("Feedback is required.");
+        // }
 
         // Form submission if there are no errors
         if ($(".errorMessage").text() === "") {
@@ -88,5 +91,5 @@ $(document).ready(function() {
             // $("#formToValidate").submit();
             alert("Form submitted successfully!");
         }
-    }
+    });
 });

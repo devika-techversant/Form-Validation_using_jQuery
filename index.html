@@ -57,6 +57,7 @@
                 <label for="Female">Female <img class="smallIcon" src="assets/icons/pinkHeart.png" alt="Pink Heart"></label>
                 <input type="radio" id="others" name="gender" value="Others">
                 <label for="Others">Others <img class="smallIcon" src="assets/icons/rainbowHeart.png" alt="Rainbow Heart"></label>
+                <div class="errorMessage"></div>
             </div>
 
             <div class="checkboxClass">
@@ -75,17 +76,19 @@
                     <label for="agreeToReceiveWhatsappMessage">I agree to be contacted through WhatsApp</label>
                     <img class="smallIcon" src="assets/icons/whatsapp.png" alt="Mail Logo">
                 </div>
+                <div class="errorMessage"></div>
             </div>
 
             <div class="checkboxClassTwo">
-                <input type="checkbox" id="termsAgreement" name="termsAgreement" value="termsAgreement" required>
+                <input type="checkbox" id="termsAgreement" name="termsAgreement" value="termsAgreement">
  				<label for="termsAgreement">I agree to <a href="">Terms & Conditions</a></label>
                 <img class="smallIcon" src="assets/icons/verification.png" alt="Tick">
+                <div class="errorMessage"></div>
             </div>
 
             <div class="dropDownClass">
                 <label for="stateInIndia">Choose your State:</label>
-                <select name="stateInIndia">
+                <select id="stateInIndia" name="stateInIndia">
                     <option value="andhraPradesh">Andhra Pradesh</option>
                     <option value="arunachalPradesh">Arunachal Pradesh</option>
                     <option value="assam">Assam</option>
@@ -116,12 +119,13 @@
                     <option value="uttarakhand">Uttarakhand</option>
                     <option value="westBengal">West Bengal</option>
                 </select>
+                <!-- <div class="errorMessage"></div> -->
             </div>
 
             <div class="testAreaClass">
                 <label for="feedback">Feedback <img class="smallIcon" src="assets/icons/feedback.png" alt="Feedback">:</label><br>
-                <textarea name="feedback" id="feedback" cols="75" rows="5" required></textarea>
-                <div id="errorMessage"></div>
+                <textarea name="feedback" id="feedback" cols="75" rows="5"></textarea>
+                <div class="errorMessage"></div>
             </div>
 
             <button type="submit">Sign In</button>
