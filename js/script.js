@@ -75,10 +75,10 @@ $(document).ready(function() {
             $(".checkboxClassTwo .errorMessage").text("Please agree to be contacted.");
         }
 
-        // Validate State
-        if (stateInIndia === "") {
-            $("#stateInIndia").siblings(".errorMessage").text("Please select a country.");
-        }
+        // // Validate State
+        // if (stateInIndia === "") {
+        //     $("#stateInIndia").siblings(".errorMessage").text("Please select a country.");
+        // }
 
         // Validate Feedback
         if (feedback === "") {
