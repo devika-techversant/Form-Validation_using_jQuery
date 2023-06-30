@@ -61,22 +61,22 @@ $(document).ready(function() {
         }        
             
         if ($('input[name="gender"]:checked').length == 0) {
-            $('.radioButtonClass').after('<div class="error">select any</div>');
+            $('.radioButtonClass').after('<div class="error">Select a Gender</div>');
         }
 
         if ($('input[name="agreeMessage"]:checked').length == 0){
-            $('.checkboxClass').after('<div class="error">select any</div>');
+            $('.checkboxClass').after('<div class="error">Select minimum one checkbox to continue</div>');
         } 
 
         if ($('input[name="termsAgreement"]:checked').length == 0) {
-            $('#termsAgreement').after('<div class="error">select any</div>');
+            $('#termsAgreement').after('<div class="error">Please agree to the Terms & conditions to continue</div>');
         } 
 
         // if($('input[name="stateInIndia"]:checked').length == 0){
         //     $('.dropDownClass').after('<div class="error">select any</div>');
 
         if (feedback.length < 1) {
-            $('#feedback').after('<div class="error">select any</div>');
+            $('#feedback').after('<div class="error">Write a feedback to continue</div>');
         }	
 
         // Form submission if there are no errors
