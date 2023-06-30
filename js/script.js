@@ -80,10 +80,10 @@ $(document).ready(function() {
             $("#stateInIndia").siblings(".errorMessage").text("Please select a country.");
         }
 
-        // // Validate Feedback
-        // if (feedback === "") {
-        //     $("#feedback").siblings(".errorMessage").text("Feedback is required.");
-        // }
+        // Validate Feedback
+        if (feedback === "") {
+            $("#feedback").siblings(".errorMessage").text("Feedback is required.");
+        }
 
         // Form submission if there are no errors
         if ($(".errorMessage").text() === "") {
